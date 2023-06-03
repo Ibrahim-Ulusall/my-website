@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def Login(request):
-    pass
+    return render(request,'accountsAppFiles/login.html')
