@@ -1,0 +1,56 @@
+{% extends 'partials/_base.html' %}
+
+{% block title %} Üye Ol {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-5">
+        <div class="offset-xl-3 col-xl-6 col-md-12 col-sm-12">
+            
+            <form method="post">
+                <div class="text-center mb-3">
+                    <p class="fs-1">Üye Ol</p>
+                    </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="First name">
+                    </div>
+
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="email" class="form-control" placeholder="E-Posta">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="password" placeholder="Parola" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        <input type="password" placeholder="Parola-Tekrar" class="form-control">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-success d-block mb-4 col-6 mx-auto ">Giriş Yap</button>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="mb-5">Hesabınız var mı ?<span class="me-4"></span><a href="{% url 'login' %}">Giriş Yap</a></p>
+                    </div>
+            </form> 
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
