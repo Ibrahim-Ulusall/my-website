@@ -62,7 +62,7 @@
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
                       <div class="accordion-body">
-                        {% if user.is_authenticated %}
+                        {% if isEnroll %}
                           {{ item.description|safe }}
                         {% else %}
                         <div class="alert alert-warning">İçeriği görüntülemek için kayıt olmalısınız.</div>  

@@ -18,6 +18,11 @@ class Course(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True,editable=False)
     
+    def is_student_registered(self,student):
+         return self.students.filter(id=student.id).exists() # Burada gönderilen öğrencinin kayıtlı olduğu kursları kontrol eder. 
+                                                             # Eğerki kayıtlı olduğu bir kurs varsa
+                                                             # True değerini döndürür, aksi halde False döndürür. 
+    
     def save(self,*args,**kwargs):
         self.slug = slugify(self.title)
         super().save(*args,**kwargs)

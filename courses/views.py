@@ -20,9 +20,11 @@ def course_details(request,courseSlug,id):
     
     data = Course.objects.get(slug=courseSlug,id=id)
     c = CourseData.objects.all().filter(name__slug = courseSlug)
+    student = Course.objects.get(id = id)
     return render(request,'courseAppFiles/course_details.html',context={
         'data':data,
-        'all_data':c
+        'all_data':c,
+        'isEnroll': student.is_student_registered(request.user)
     })
 
 def course_data_details(request,id):

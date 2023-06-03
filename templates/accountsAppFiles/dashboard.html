@@ -5,5 +5,31 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
-    <h1 class="display-1">{{ request.user.first_name }}</h1>
+
+<div class="container mt-4">
+    <div class="row ms-auto"> 
+        <div class="col-lg-12">
+            <div class="row ms-auto"> 
+                <h1 class="lead text-center display-4 mb-5">Kayıt Olunan Kurslar</h1>
+
+                {% for course in courses %}
+                    <div class="col-lg-3 col-md-4 mb-3 col-12 me-5">
+
+                        <div class="card-header">
+                        </div>
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ course.title }}</h5>
+                              <p class="card-text">{{ course.description|truncatechars:200 }}</p>
+                              <a href="{% url 'course-details' course.slug course.id %}" class="card-link btn btn-outline-success d-block">Derse başla</a>
+                            </div>
+                          </div>
+                    </div><!-- end col -->
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
