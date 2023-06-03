@@ -11,21 +11,28 @@
   
                 <!-- Pills content -->
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                    <form>
+                    <form method="POST">
+                        {% csrf_token %}
                         <div class="text-center mb-3">
                         <p class="fs-1">Giriş Yap</p>
                         </div>
+                        <!-- Error Box -->
+                        {% if messages %}
+                            {% for message in messages %}    
+                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                            {% endfor %}
+                        {% endif %}
                         <!-- Email input -->
+                        
                         <div class="form-outline mb-4">
-                        <label class="form-label" for="loginPassword"><i class="fa-solid fa-user me-2"></i> Kullanıcı Adı</label>
-                        <input type="email" id="loginName" class="form-control" />
+                            <label class="form-label" for="loginPassword"><i class="fa-solid fa-user me-2"></i> Kullanıcı Adı</label>
+                            {{ form.username }}
                         </div>
                 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
                         <label class="form-label" for="loginPassword"><i class="fa-solid fa-lock me-2"></i>Parola</label>
-                            <input type="password" id="loginPassword" class="form-control" />
+                            {{ form.password }}
                         </div>
                 
                         <!-- Submit button -->
