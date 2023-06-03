@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="card">
-                <div class="card-header">{{ data.name|title }}
+                <div class="card-header"><a href="#" class="text-decoration-none text-dark lead">{{ data.teachers.TeacherName|title }}</a> : {{ data.name|title }}
                     <span class="float-end font-weight-light" style="font-style: italic;">{{ data.date }} <i class="fa-solid fa-calendar-days ms-2 text-secondary"></i></span>
                 </div>
                 <div class="card-body">
@@ -21,7 +21,35 @@
                   <h5>Eğitim İçeriği</h5>
                 </div>
                 <div class="col">
-                  <button class="btn btn-outline-success float-end d-block px-4">Kayıt ol</button>
+                  {% if user.is_authenticated %}
+                  <button type="button" class="btn btn-outline-success rounded-1 float-end" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                    Kayıt Ol {{ data.id }} {{data.name}}
+                  </button>
+                  
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalCenterTitle">Kurs Kayıt</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <span style="font-weight:bold;">{{ data.name|title }}</span> Kursuna kayıt olacaksınız. Emin misiniz ?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{% url 'enrolTheCourse' %}" method="POST">
+                              {% csrf_token %}
+                              <input type="hidden" name="user_id" value="{{ user.id }}">
+                              <input type="hidden" name="courseId" value="{{ data.id }}">
+                              <button type="submit" class="btn btn-outline-success rounded-1">Evet,Eminim</button>
+                            </form>
+                            <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">İptal</button>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {% endif %}
                 </div>
               </div>
               <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -37,7 +65,7 @@
                         {% if user.is_authenticated %}
                           {{ item.description|safe }}
                         {% else %}
-                        <div class="alert alert-warning">İçeriği görüntülemek için kayıt olmalısınız</div>  
+                        <div class="alert alert-warning">İçeriği görüntülemek için kayıt olmalısınız.</div>  
                         {% endif %}
                       </div>
                     </div>
@@ -49,4 +77,6 @@
         </div>
     </div>
 </div>
+
+
 {% endblock %}

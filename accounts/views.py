@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from .forms import LoginForm,RegisterForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from courses.Models.Course import Course
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -49,3 +52,20 @@ def Register(request):
 def Logout(request):
     logout(request)
     return render(request,'accountsAppFiles/logout.html')
+
+@login_required(login_url='login')
+def Dashboard(request):
+    current_user = request.user
+    courses = current_user.courses_joined.all()
+    data = {
+        'courses':courses
+    }
+    return render(request,'accountsAppFiles/dashboard.html',context=data)
+
+def enrolTheCourse(request):
+    user = User.objects.get(id = request.POST['user_id'])
+    course = Course.objects.get(id = request.POST['courseId'])
+    
+    course.students.add(user)
+    
+    return redirect('dashboard')
