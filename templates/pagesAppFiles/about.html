@@ -1,0 +1,34 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block title %}
+    Hakkımda
+{% endblock %}
+
+{% block content %}
+    <header>
+        <div class="about-content">
+            <div class="about-left">
+                <h2 class="title">Merhaba, Ben </h2>
+                <h1 class="name">İbrahim Ulusal</h1>
+                <p>Yazılım Geliştirici</p>
+                <div class="btn-box">
+                    <a href="#desc" class="btn-a">Daha fazla</a>
+                    <a href="{% url 'contact' %}" class="btn-a">İletişime Geç</a>
+                </div>
+            </div>
+    
+            <div class="about-right">
+                <p><img src="{% static 'img/profile.jpg' %}" class="image" alt="profile"></p>
+            </div>
+        </div>
+        <section class="about-description" id="desc">
+            <h1>Merhaba,<br> ben İbrahim Ulusal</h1>
+            <p>Bilişim güvenliği teknolojisi öğrencisiyim ve şu anda Ben Mehmet Akif Ersoy Üniversitesi'nde ön lisans programında eğitim almaktayım.</p>
+            <p>Ben Mehmet Akif Ersoy Üniversitesi, bilişim güvenliği teknolojisi konusunda önde gelen üniversitelerden biridir. Okulumuz, güçlü akademik kadrosu ve modern altyapısıyla öğrencilere kapsamlı bir eğitim imkanı sunmaktadır. Bilişim güvenliği teknolojisi ön lisans programı, güncel ve sektör odaklı müfredatıyla öğrencilere bilgisayar güvenliği konusunda temel bilgi ve beceriler kazandırmayı hedeflemektedir.</p>
+            <p>Eğitimim sürecinde, bilişim güvenliği alanındaki temel prensipleri ve yöntemleri öğrenmekteyim. Bu kapsamda, Python, Django, C#, Java, HTML ve CSS gibi teknolojileri kullanarak web uygulamaları geliştirmeyi öğreniyorum. Ayrıca, Linux işletim sistemi üzerinde temel düzeyde sistem yönetimi yapabilmekteyim.</p>
+            <p>Okulumuzda, güvenlik testleri ve sızma testleri gibi konuları da içeren pratik uygulamalara dayalı dersler alıyorum. Bu sayede, bilgisayar sistemlerinin ve ağların güvenlik açıklarını tespit etme ve bu açıkları giderme becerilerimi geliştirme fırsatı buluyorum.</p>
+            <p>Hedefim, bilişim güvenliği alanında uzmanlaşmak ve güvenli bir dijital dünya için katkı sağlamaktır. Sürekli olarak güncel gelişmeleri takip ediyor ve kendimi geliştirmeye odaklanıyorum.</p>
+        </section>
+    </header>
+    
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+{% block title %} İletişim {% endblock %}
+{% block content %}  
+
+    <div id="contact" class="section wb p-5">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Bize Ulaşın!</h3>
+                <p class="lead">Eğitim platformumuzla ilgili herhangi bir sorunuz, öneriniz veya geri bildiriminiz varsa, bize ulaşmaktan çekinmeyin! İletişim alanımız aracılığıyla, uzman ekip üyelerimiz size yardımcı olmaktan mutluluk duyacaktır. Sizden gelen mesajları dikkatle değerlendiriyor ve en kısa sürede yanıtlıyoruz. Size en iyi kullanıcı deneyimini sunmak için buradayız!</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="offset-xl-2 col-xl-8 col-md-12 col-sm-12">
+
+					{% if messages %}
+						{% for message in messages %}
+							<div class="alert alert-{{message.tags}}">
+								{{message}}
+							</div>
+						{% endfor %}
+
+					{% endif %}
+
+
+                    <div class="contact_form">
+                        <div id="message"></div>
+                        <form action="" method="POST">
+							{% csrf_token %}
+                            <div class="row row-fluid">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    {{form.firstName}}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    {{form.lastName}}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    {{form.email}}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    {{form.phone}}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    {{form.message}}
+                                </div>
+                                <div class="d-grid gap-2 col-6 mx-auto">
+                                    <button type="submit" class="btn btn-outline-success">Gönder</button>
+                                  </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+	{% endblock %}

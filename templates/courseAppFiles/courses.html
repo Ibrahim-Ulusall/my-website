@@ -1,0 +1,51 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Eğitimler
+{% endblock %}
+
+{% block content %}
+
+<div id="overviews" class="section wb">
+    <div class="container mt-5">
+        <div class="row"> 
+            <div class="col-lg-9">
+                
+                <div class="row"> 
+                  {% if messages %}
+                    {% for message in messages %}
+                      <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+                  {% endif %}
+                    {% for course in courses %}
+                    <div class="col-lg-5 col-md-4 mb-3 col-12 me-5">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ course.title }}</h5>
+                              <p class="card-text">{{ course.description|truncatechars:200 }}</p>
+                              <a href="{% url 'course-details' course.slug course.id %}" class="card-link btn btn-outline-success d-block">İncele</a>
+                            </div>
+                          </div>
+                    </div><!-- end col -->
+                    {% endfor %}
+                </div><!-- end row -->
+                <!-- Pagination -->
+        
+            </div><!-- end col -->
+            <div class="col-lg-3 col-12 right-single">
+                <div class="list-group">
+                    <li class="list-group-item list-group-item-action bg-success text-light">
+                      Kategoriler
+                    </li>
+                    {% for category in categories %}
+                    <a href="{% url 'categories' category.slug %}" class="list-group-item list-group-item-action"> {{ category.categoryName|title }} </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div><!-- end section -->  
+
+{% endblock %}

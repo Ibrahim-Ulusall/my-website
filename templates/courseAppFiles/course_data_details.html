@@ -1,0 +1,26 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block title %} {{ data.title|title }} {% endblock %}
+
+{% block content %} 
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <p class="card-header"> 
+                    <a href="{% url 'home' %}" class="  text-secondary text-decoration-none"><i class="fa-solid fa-backward me-2 small"></i> Geri Dön</a>
+                </p>    
+                <div class="card-body">
+                    <a class="card-title text-decoration-none text-dark" href="{% url 'courses' %}">
+                        {{ data.name.courseName|title }}
+                    </a>
+                    <p></p>
+                <h5 class="card-title">{{ data.title|title }}</h5>
+                <p class="card-text text-dark">{{ data.description|safe }}</p>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

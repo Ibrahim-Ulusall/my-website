@@ -1,0 +1,66 @@
+{% extends 'partials/_base.html'%}
+
+{% block title %} Anasayfa {% endblock %}
+
+{% block content %}
+
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-sm-9">
+        <!-- courses -->
+        {% for data in page_obj.object_list %}
+          <div class="card mb-3">
+            <div class="card-header">
+              {{ data.name.courseName|title }}
+              <span class="float-end" style="font-style: italic;">{{ data.date }} <i class="fa-solid fa-calendar-days ms-2 text-secondary"></i></span>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"> <a href="{% url 'course-data-details' data.id  %}" class="text-decoration-none text-dark">{{ data.title|title }} </a></h5>
+                  <p class="card-text">
+                    {{ data.description|safe|truncatechars:310 }}
+                  </p>
+                  <a href="{% url 'course-data-details' data.id  %}" class="btn btn-success float-right w-25">İncele</a>
+            </div>
+          </div>
+          
+          
+          {% endfor %}
+          <!-- end courses -->
+
+
+          <!-- Pagination -->
+          <div class="row my-5">
+            <p>Sayfa : {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</p>
+            <div class="col-md-4 offset-md-4">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Geri</a></li>
+                  {% endif %}
+                    {% if page_obj.paginator.num_pages >= 3 %}
+                  <li class="page-item"><a href="?page=1" class="page-link">1</a></li>
+                  <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+                  <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+                  {% endif %}
+                  {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">İleri</a></li>
+                    {% endif %}
+                </ul>
+              </nav>
+            </div>
+          </div>
+                
+      </div>
+      <div class="col-sm-3">
+        <div class="list-group">
+          <li class="list-group-item list-group-item-action bg-success text-light">
+            Kategoriler
+          </li>
+          {% for category in categories %}
+          <a href="{% url 'categories' category.slug %}" class="list-group-item list-group-item-action"> {{ category.categoryName|title }} </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

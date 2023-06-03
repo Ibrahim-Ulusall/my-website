@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">İbrahim Ulusal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {% if '/' in request.path %} active {% endif %}" href="{% url 'home' %}">Anasayfa</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'courses' %}">Eğitimler</a>
+        </li>
+
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if 'about' in request.path %} active {% endif %}" href="{% url 'about' %}">Hakkımda</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link {% if 'contact' in request.path %} active {% endif %}" href="{% url 'contact' %}" tabindex="-1">İletişim</a>
+        </li>
+      
+      </ul>
+        <a class="btn btn-outline-success me-2">Giriş Yap</a>
+        <a class="btn btn-outline-success">Üye Ol</a>
+    </div>
+  </div>
+</nav>
+
+
