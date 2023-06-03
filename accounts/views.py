@@ -31,4 +31,16 @@ def Login(request):
     })
 
 def Register(request):
-    return render(request,'accountsAppFiles/register.html')
+    
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Hesabınız oluşturuldu')
+            return redirect('login')
+    else:
+        form = RegisterForm()
+    
+    return render(request,'accountsAppFiles/register.html',context={
+        'form':form
+    })

@@ -8,38 +8,53 @@
         <div class="offset-xl-3 col-xl-6 col-md-12 col-sm-12">
             
             <form method="post">
+                {% csrf_token %}
                 <div class="text-center mb-3">
                     <p class="fs-1">Üye Ol</p>
                     </div>
-                <div class="row mt-2">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="First name">
-                    </div>
-
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Last name">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <input type="email" class="form-control" placeholder="E-Posta">
-                    </div>
-                </div>
+                    {% if form.errors  %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger alert-dismisible">
+                                    <button class="close" data-dismiss="alert">&times;</button>
+                                    <strong>{{ error }}</strong>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                    {% endif %}
 
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="password" placeholder="Parola" class="form-control">
+                        {{ form.first_name }}
+                    </div>
+
+                    <div class="col">
+                        {{ form.last_name }}
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        {{ form.user_name }}
                     </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col">
-                        <input type="password" placeholder="Parola-Tekrar" class="form-control">
+                        {{ form.email }}
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col">
+                        {{ form.password1 }}
+                    </div>
+                    <div class="col">
+                        {{ form.password2 }}
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        <button type="submit" class="btn btn-success d-block mb-4 col-6 mx-auto ">Giriş Yap</button>
+                        <button type="submit" class="btn btn-success d-block mb-4 col-6 mx-auto ">Üye Ol</button>
                     </div>
                 </div>
                 <div class="text-center">
