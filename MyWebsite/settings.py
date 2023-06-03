@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'courses.apps.CoursesConfig',
     'contact.apps.ContactConfig',
+    'accounts.apps.AccountsConfig',
     'ckeditor',
     'ckeditor_uploader',
     
