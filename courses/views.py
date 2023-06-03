@@ -2,8 +2,10 @@ from django.shortcuts import render
 from courses.Models.CourseData import CourseData
 from courses.Models.Course import Course
 from courses.Models.Category import Category
+from courses.Models.Teachers import Teacher
 from django.core.paginator import Paginator
 from django.contrib import messages
+
 def course(request):
     data = Course.objects.all().order_by('-id')
     paginator = Paginator(data,4)
@@ -44,35 +46,12 @@ def categoryList(request,categories_slug):
         'courses':courses,
         'categories':Category.objects.all().order_by('categoryName'),
     })
-    
-    
-    
-    
-    
-    
-    
-"""
 
-<div class="row my-5">
-    <p>Sayfa : {{ page_obj.number }}/{{ page_obj.paginator.num_pages }}</p>
-    <div class="col-md-4 offset-md-4">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Geri</a></li>
-                {% endif %}
-                {% if page_obj.paginator.num_pages >= 3 %}
-                    <li class="page-item"><a href="?page=1" class="page-link">1</a></li>
-                    <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
-                    <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">İleri</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </div>
-</div>
-
-
-"""
+def allTeachers(request):
+    teachers = Teacher.objects.all()
+    if len(teachers) == 0:
+        messages.info(request,'Sisteme Kayıtlı Eğitmen Bulunmamaktadır!')
+        
+    return render(request,'courseAppFiles/teachers.html',context={
+        'all_teacher': teachers
+    })
