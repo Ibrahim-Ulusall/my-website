@@ -14,9 +14,16 @@
                 <p class="card-text">
                     {{ data.description }}
                 </p>
-                <h5>Eğitim İçeriği</h5>
-                </div>
                 
+                </div>
+              <div class="row m-2">
+                <div class="col">
+                  <h5>Eğitim İçeriği</h5>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-success float-end d-block px-4">Kayıt ol</button>
+                </div>
+              </div>
               <div class="accordion" id="accordionPanelsStayOpenExample">
                 {% for item in all_data %}
                   <div class="accordion-item">
@@ -27,7 +34,11 @@
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
                       <div class="accordion-body">
-                        {{ item.description|safe }}
+                        {% if user.is_authenticated %}
+                          {{ item.description|safe }}
+                        {% else %}
+                        <div class="alert alert-warning">İçeriği görüntülemek için kayıt olmalısınız</div>  
+                        {% endif %}
                       </div>
                     </div>
                   </div>
