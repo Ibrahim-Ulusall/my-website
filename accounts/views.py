@@ -57,6 +57,8 @@ def Logout(request):
 def Dashboard(request):
     current_user = request.user
     courses = current_user.courses_joined.all()
+    if len(courses) == 0:
+        messages.info(request,'Kayıtlı Olduğunuz Kurs Bulunmamaktadır!')
     data = {
         'courses':courses
     }
@@ -67,5 +69,13 @@ def enrolTheCourse(request):
     course = Course.objects.get(id = request.POST['courseId'])
     
     course.students.add(user)
+    
+    return redirect('dashboard')
+
+def releaseTheCourse(request):
+    user = User.objects.get(id = request.POST['user_id'])
+    course = Course.objects.get(id = request.POST['courseId'])
+    
+    course.students.remove(user)
     
     return redirect('dashboard')

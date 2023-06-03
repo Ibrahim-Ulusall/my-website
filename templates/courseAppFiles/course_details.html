@@ -22,33 +22,59 @@
                 </div>
                 <div class="col">
                   {% if user.is_authenticated %}
-                  <button type="button" class="btn btn-outline-success rounded-1 float-end" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                    Kayıt Ol {{ data.id }} {{data.name}}
-                  </button>
-                  
-                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalCenterTitle">Kurs Kayıt</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <span style="font-weight:bold;">{{ data.name|title }}</span> Kursuna kayıt olacaksınız. Emin misiniz ?
-                        </div>
-                        <div class="modal-footer">
-                            <form action="{% url 'enrolTheCourse' %}" method="POST">
-                              {% csrf_token %}
-                              <input type="hidden" name="user_id" value="{{ user.id }}">
-                              <input type="hidden" name="courseId" value="{{ data.id }}">
-                              <button type="submit" class="btn btn-outline-success rounded-1">Evet,Eminim</button>
-                            </form>
-                            <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">İptal</button>
+                    {% if isEnroll %}
+                    <button type="button" class="btn btn-outline-danger rounded-1 float-end" data-bs-toggle="modal" data-bs-target="#releaseModel">
+                      {{data.name}}  Kursu Bırak 
+                    </button>
+                    <div class="modal fade" id="releaseModel" tabindex="-1" aria-labelledby="releaseModelCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="releaseModelCenterTitle">Kurs Bırak</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
+                          <div class="modal-body">
+                            <span style="font-weight:bold;">{{ data.name|title }}</span> Kursunu bırakacaksınız. Emin misiniz ?
+                          </div>
+                          <div class="modal-footer">
+                              <form action="{% url 'releaseTheCourse' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ user.id }}">
+                                <input type="hidden" name="courseId" value="{{ data.id }}">
+                                <button type="submit" class="btn btn-outline-success rounded-1">Evet,Eminim</button>
+                              </form>
+                              <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">İptal</button>
+                            </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
+                    {% else %}
+                    <button type="button" class="btn btn-outline-success rounded-1 float-end" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                      {{data.name}}  Kayıt Ol
+                    </button>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Kurs Kayıt</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <span style="font-weight:bold;">{{ data.name|title }}</span> Kursuna kayıt olacaksınız. Emin misiniz ?
+                          </div>
+                          <div class="modal-footer">
+                              <form action="{% url 'enrolTheCourse' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="user_id" value="{{ user.id }}">
+                                <input type="hidden" name="courseId" value="{{ data.id }}">
+                                <button type="submit" class="btn btn-outline-success rounded-1">Evet,Eminim</button>
+                              </form>
+                              <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">İptal</button>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
                   {% endif %}
                 </div>
               </div>

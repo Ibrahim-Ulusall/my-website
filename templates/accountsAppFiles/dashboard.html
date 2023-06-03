@@ -10,8 +10,13 @@
     <div class="row ms-auto"> 
         <div class="col-lg-12">
             <div class="row ms-auto"> 
-                <h1 class="lead text-center display-4 mb-5">Kayıt Olunan Kurslar</h1>
-
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% else %}
+                    <h1 class="lead text-center display-4 mb-5">Kayıt Olunan Kurslar</h1>
+                {% endif %}
                 {% for course in courses %}
                     <div class="col-lg-3 col-md-4 mb-3 col-12 me-5">
 
