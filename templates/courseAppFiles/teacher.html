@@ -1,0 +1,56 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+
+{% block title %} {{ teacher_details.TeacherName|title }} {% endblock %}
+
+{% block content %}
+<div class="container mt-4 pe-3">
+    
+    <div class="row"> 
+    
+        <div class="col-lg-12">
+    
+            <div class="row ms-auto"> 
+                <div class="card mb-3 p-0">
+                    <div class="card-header">
+                      <span style="font-style: italic;"> {{ teacher_details.title|title }}</span>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ teacher_details.TeacherName|title }}</h5>
+                          <p class="card-text">
+                            {{ teacher_details.Description }}
+                          </p>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+        <div class="col-lg-12">
+            <div class="card mb-3 p-0">
+                <div class="card-header">
+                    <h5>Eğitimlerim</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row p-3">
+                        {% for course in teacherAllCourse %}
+                        <div class="col-lg-4 mb-3">
+                          <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ course.title }}</h5>
+                              <p class="card-text">{{ course.description|truncatechars:200 }}</p>
+                              <a href="{% url 'course-details' course.slug course.id %}" class="card-link btn btn-outline-success d-block">İncele</a>
+                            </div>
+                          </div>
+                        </div>
+                        {% endfor %}
+                      </div>
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
