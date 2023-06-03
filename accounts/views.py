@@ -6,7 +6,6 @@ from django.contrib import messages
 
 
 def Login(request):
-    
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -44,3 +43,7 @@ def Register(request):
     return render(request,'accountsAppFiles/register.html',context={
         'form':form
     })
+    
+def Logout(request):
+    logout(request)
+    return render(request,'accountsAppFiles/logout.html')

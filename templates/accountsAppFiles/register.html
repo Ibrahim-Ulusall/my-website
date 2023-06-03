@@ -15,10 +15,9 @@
                     {% if form.errors  %}
                         {% for field in form %}
                             {% for error in field.errors %}
-                                <div class="alert alert-danger alert-dismisible">
-                                    <button class="close" data-dismiss="alert">&times;</button>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                     <strong>{{ error }}</strong>
-                                </div>
+                                  </div>
                             {% endfor %}
                         {% endfor %}
                     {% endif %}
@@ -34,7 +33,7 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col">
-                        {{ form.user_name }}
+                        {{ form.username }}
                     </div>
                 </div>
 

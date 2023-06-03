@@ -1,0 +1,24 @@
+{% extends 'partials/_base.html' %}
+
+{% load static %}
+
+{% block title %} Çıkış Yap {% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row justify-content-center align-items-center" style="height: 70vh;">
+      <div class="col-md-6">
+        <div class="card p-3">
+          <div class="card-body text-center">
+            <h1 class="display-5 text-danger">Oturumunuz Sonlandırıldı</h1>
+            <p class="lead">Bugün web sitesine ayırdığınız kaliteli zaman için teşekkür ederiz.</p>
+            <!-- <a class="text-danger text-decoration-none" href="{% url 'home' %}">Anasayfa'ya dön</a> -->
+          </div>
+          <a class="text-danger text-decoration-none mx-5" href="{% url 'login' %}">Giriş Yap</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}

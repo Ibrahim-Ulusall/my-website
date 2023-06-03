@@ -24,7 +24,7 @@ class RegisterForm(UserCreationForm):
         'placeholder': 'Soyadınız'
     }))
 
-    user_name = forms.CharField(widget=forms.TextInput(attrs={
+    username = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
         'placeholder': 'Kullanıcı Adı'
     }))
@@ -46,4 +46,4 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name','last_name', 'user_name', 'email', 'password1', 'password2']
+        fields = ['first_name','last_name', 'username', 'email', 'password1', 'password2']
