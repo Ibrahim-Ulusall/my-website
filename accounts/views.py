@@ -6,28 +6,30 @@ from django.contrib import messages
 
 
 def Login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            
-            user = authenticate(request,username=username,password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request,user)
-                    return redirect('courses')
-                else:
-                    messages.info(request,'Hesap aktif değil!')
-            else:
-                messages.info(request,'Kullanıcı Adı veya Parola Hatalı')
-                
+    if request.user.is_authenticated:
+        return redirect('home')
     else:
-        form = LoginForm()
-        
-    return render(request,'accountsAppFiles/login.html',context={
-        'form':form
-    })
+        if request.method == 'POST':
+            form = LoginForm(request.POST)
+            if form.is_valid():
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
+                
+                user = authenticate(request,username=username,password=password)
+                if user is not None:
+                    if user.is_active:
+                        login(request,user)
+                        return redirect('courses')
+                    else:
+                        messages.info(request,'Hesap aktif değil!')
+                else:
+                    messages.info(request,'Kullanıcı Adı veya Parola Hatalı')
+                    
+        else:
+            form = LoginForm()
+        return render(request,'accountsAppFiles/login.html',context={
+            'form':form
+        })
 
 def Register(request):
     
