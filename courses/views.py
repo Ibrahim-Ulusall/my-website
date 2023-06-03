@@ -34,7 +34,7 @@ def course_data_details(request,id):
     context = CourseData.objects.get(id = id)
     
     return render(request,'courseAppFiles/course_data_details.html',context= {
-        'data':context
+        'data':context,
     })
 
 
