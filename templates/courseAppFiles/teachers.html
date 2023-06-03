@@ -27,7 +27,7 @@
                             <div class="card-body">
                               <h5 class="card-title">{{ teacher.TeacherName|title }}</h5>
                               <p class="card-text">{{ teacher.Description|truncatechars:200 }}</p>
-                              <a href="#" class="card-link btn btn-outline-success d-block">Ayrıntılar</a>
+                              <a href="{% url 'teacherDetails' teacher.slug %}" class="card-link btn btn-outline-success d-block">Ayrıntılar</a>
                             </div>
                           </div>
                     </div><!-- end col -->

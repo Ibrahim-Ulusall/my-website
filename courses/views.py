@@ -55,3 +55,11 @@ def allTeachers(request):
     return render(request,'courseAppFiles/teachers.html',context={
         'all_teacher': teachers
     })
+    
+def teacherDetails(request,teacherSlug):
+    data = Teacher.objects.get(slug = teacherSlug)
+    teacherCourses = Course.objects.all().filter(teachers__slug = teacherSlug)
+    return render(request,'courseAppFiles/teacher.html',context={
+        'teacher_details' : data,
+        'teacherAllCourse' : teacherCourses
+    })
