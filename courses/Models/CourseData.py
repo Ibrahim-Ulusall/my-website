@@ -10,7 +10,7 @@ class CourseData(models.Model):
     description = RichTextUploadingField()
     date = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True,editable=False)
-    
+    isShowhome = models.BooleanField(blank=True,null=True)
     
     def save(self,*args,**kwargs):
         self.slug = slugify(self.title)
