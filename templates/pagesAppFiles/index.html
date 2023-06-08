@@ -9,20 +9,21 @@
       <div class="col-sm-9">
         <!-- courses -->
         {% for data in page_obj.object_list %}
-          <div class="card mb-3">
-            <div class="card-header">
-              {{ data.name.courseName|title }}
-              <span class="float-end" style="font-style: italic;">{{ data.date }} <i class="fa-solid fa-calendar-days ms-2 text-secondary"></i></span>
+          {% if data.isShowhome %}
+            <div class="card mb-3">
+              <div class="card-header">
+                {{ data.name.courseName|title }}
+                <span class="float-end" style="font-style: italic;">{{ data.date }} <i class="fa-solid fa-calendar-days ms-2 text-secondary"></i></span>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"> <a href="{% url 'course-data-details' data.id  %}" class="text-decoration-none text-dark">{{ data.title|title }} </a></h5>
+                    <p class="card-text">
+                      {{ data.description|safe|truncatechars:310 }}
+                    </p>
+                    <a href="{% url 'course-data-details' data.id  %}" class="btn btn-success float-right w-25">İncele</a>
+              </div>
             </div>
-            <div class="card-body">
-              <h5 class="card-title"> <a href="{% url 'course-data-details' data.id  %}" class="text-decoration-none text-dark">{{ data.title|title }} </a></h5>
-                  <p class="card-text">
-                    {{ data.description|safe|truncatechars:310 }}
-                  </p>
-                  <a href="{% url 'course-data-details' data.id  %}" class="btn btn-success float-right w-25">İncele</a>
-            </div>
-          </div>
-          
+          {% endif %}
           
           {% endfor %}
           <!-- end courses -->

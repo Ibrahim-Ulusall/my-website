@@ -5,7 +5,7 @@ from courses.Models.CourseData import CourseData
 from django.core.paginator import Paginator
 
 def index(request):
-    courseList = CourseData.objects.all().order_by('-id')
+    courseList = CourseData.objects.all().filter(isShowhome=True).order_by('-id')
     paginator = Paginator(courseList,3)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
