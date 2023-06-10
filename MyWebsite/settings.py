@@ -23,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w-fj1v5-2o6#e#xworn%vps)m)_s@s2z(r8dwj7t(wek-td)kn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['byte-genius.herokuapp.com','127.0.0.1']
-
+# ALLOWED_HOSTS = ['byte-genius.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -122,9 +122,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static'
+# ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
