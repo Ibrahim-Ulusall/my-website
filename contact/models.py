@@ -10,3 +10,6 @@ class Contact(models.Model):
     message = models.TextField()
     date = models.DateTimeField(auto_now=True,editable=False)
     
+    def __str__(self):
+        return f'{self.firstName.capitalize()} {self.lastName.upper()}'
+    
